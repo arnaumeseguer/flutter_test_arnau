@@ -38,10 +38,27 @@ void main() {
     //La frase encara hi és (perquè el mock sempre retorna el mateix)
     expect(find.text('Test sentence'), findsNWidgets(2));
   });
+
   testWidgets('Test mostra frase inicial', (WidgetTester tester) async {
     await tester.pumpWidget(crearMultiProvider());
     await tester.pumpAndSettle();
     expect(find.text('Test sentence'), findsOneWidget);
+  });
+
+
+  testWidgets('Test donar like al text', (WidgetTester tester) async {
+    await tester.pumpWidget(crearMultiProvider());
+    await tester.pumpAndSettle();
+    final likeButton = find.byIcon(Icons.favorite_border);
+    final nextButton = find.widgetWithText(ElevatedButton, 'Next');
+    expect(nextButton, findsOneWidget);
+    expect(likeButton,findsOneWidget);
+    await tester.tap(likeButton);
+    await tester.pumpAndSettle();
+    await tester.tap(nextButton);
+    await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.favorite), findsNWidgets(2));
+    expect(find.text('Test sentence'), findsNWidgets(2));
   });
 }
 
@@ -57,3 +74,4 @@ class FakeSentenceService implements ISentenceService {
     return Sentence(text: text);
   }
 }
+
