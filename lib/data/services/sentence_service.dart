@@ -15,7 +15,7 @@ class SentenceService implements ISentenceService {
   Future<Sentence> getNext() async {
     count++;
     var response = await http.get(
-      Uri.parse('https://jsonplaceholder.typicode.com/albums/$count'),
+      Uri.parse('https://dummyjson.com/quotes/$count'),
     );
 
     await Future.delayed(Duration(milliseconds: 2000));

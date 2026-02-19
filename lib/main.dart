@@ -405,11 +405,11 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
+    final style = theme.textTheme.displaySmall!.copyWith(
       shadows: [
         Shadow(color: theme.colorScheme.primaryContainer, blurRadius: 10),
       ],
-      color: theme.colorScheme.onPrimary,
+      color: theme.colorScheme.onPrimaryFixed, fontSize: 8,
     );
     return Card(
       color: theme.colorScheme.primary,
